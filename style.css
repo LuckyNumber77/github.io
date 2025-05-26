@@ -1,27 +1,53 @@
-/* style.css */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fafc;
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #3b82f6;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+    }
 
-body {
-  font-family: sans-serif;
-  max-width: 800px;
-  margin: 2rem auto;
-  line-height: 1.5;
-  padding: 0 1rem;
-}
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
 
-header, footer {
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 0.2em;
-}
-
-nav a {
-  margin: 0 1em;
-  text-decoration: none;
-  color: #0366d6;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #3b82f6; }
+    }
+    
+    .floating { 
+      animation-name: floating;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    
+    @keyframes floating {
+      0% { transform: translate(0,  0px); }
+      50%  { transform: translate(0, 15px); }
+      100%   { transform: translate(0, -0px); }    
+    }

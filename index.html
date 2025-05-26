@@ -6,61 +6,7 @@
   <title>Darren Billy Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f8fafc;
-      scroll-behavior: smooth;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-    
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid #3b82f6;
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: .15em;
-      animation: 
-        typing 3.5s steps(40, end),
-        blink-caret .75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #3b82f6; }
-    }
-    
-    .floating { 
-      animation-name: floating;
-      animation-duration: 3s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-    
-    @keyframes floating {
-      0% { transform: translate(0,  0px); }
-      50%  { transform: translate(0, 15px); }
-      100%   { transform: translate(0, -0px); }    
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="min-h-screen">
   <!-- Animated Background -->
@@ -128,9 +74,12 @@
             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-xl opacity-30"></div>
             <div class="relative w-full h-full bg-white rounded-full shadow-xl overflow-hidden border-8 border-white">
               <!-- Placeholder for profile image -->
-              <div class="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                <i class="fas fa-user text-6xl text-blue-500"></i>
-              </div>
+                <!-- Your profile photo -->
+                <img
+                  src="images/my‑photo.jpg"
+                  alt="Darren Billy"
+                  class="w-full h-full object-cover"
+                />
             </div>
             <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-yellow-400 rounded-full blur-xl opacity-20"></div>
             <div class="absolute -top-6 -right-6 w-24 h-24 bg-pink-400 rounded-full blur-xl opacity-20"></div>
@@ -157,7 +106,7 @@
           <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
             <i class="fas fa-running text-white text-6xl floating"></i>
           </div>
-          <div classp-6">
+          <div class="p-6">
             <h3 class="text-xl font-bold text-gray-800 mb-2">Top Recruit Tapes</h3>
             <p class="text-gray-600 mb-4">Sports highlight reel website that helps athletes showcase their skills to recruiters.</p>
             <div class="flex flex-wrap gap-2 mb-4">
@@ -379,64 +328,8 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script>
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Back to top button
-    const backToTopButton = document.getElementById('back-to-top');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.remove('opacity-0', 'invisible');
-        backToTopButton.classList.add('opacity-100', 'visible');
-      } else {
-        backToTopButton.classList.remove('opacity-100', 'visible');
-        backToTopButton.classList.add('opacity-0', 'invisible');
-      }
-    });
-    
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
-          if (!mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-          }
-        }
-      });
-    });
-    
-    // Typewriter effect reset
-    setTimeout(() => {
-      const typewriter = document.querySelector('.typewriter');
-      typewriter.style.animation = 'none';
-      void typewriter.offsetWidth; // Trigger reflow
-      typewriter.style.animation = 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite';
-    }, 3500);
-  </script>
+  <script src="main.js"></script>
+
+
 </body>
 </html>
