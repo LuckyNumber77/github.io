@@ -51,3 +51,16 @@
       50%  { transform: translate(0, 15px); }
       100%   { transform: translate(0, -0px); }    
     }
+
+    /* style.css */
+
+@media (max-width: 767px) {
+  .typewriter {
+    /* stop hiding the overflow and allow wrapping */
+    overflow: visible !important;
+    white-space: normal !important;
+    /* remove the blinking cursor on small */
+    border-right: none !important;
+    animation: none !important;
+  }
+}
