@@ -1,3 +1,6 @@
+/* ----------------------------------------------------
+ *  GLOBAL FONTS & DEFAULTS
+ * -------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
@@ -13,6 +16,9 @@ body {
   color: transparent;
 }
 
+/* ----------------------------------------------------
+ *  CARDS & HOVER LIFT
+ * -------------------------------------------------- */
 .card-hover:hover {
   transform: translateY(-5px);
   box-shadow:
@@ -20,11 +26,13 @@ body {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* ---------- Typewriter Effect ---------- */
+/* ----------------------------------------------------
+ *  TYPEWRITER HEADLINE
+ * -------------------------------------------------- */
 .typewriter {
-  overflow: hidden;
-  border-right: .15em solid #3b82f6;  /* the “cursor” */
-  white-space: nowrap;                 /* single‑line on desktop */
+  overflow: hidden;                 /* hides unrevealed text */
+  border-right: .15em solid #3b82f6;/* blinking “cursor”  */
+  white-space: nowrap;              /* single-line on lg screens */
   margin: 0 auto;
   letter-spacing: .15em;
   animation:
@@ -32,32 +40,32 @@ body {
     blink-caret .75s step-end infinite;
 }
 
-/* typing and caret blink keyframes */
+/* type reveal */
 @keyframes typing {
   from { width: 0; }
   to   { width: 100%; }
 }
+/* cursor blink */
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50%      { border-color: #3b82f6; }
 }
 
-/* floating accent elements */
-.floating { 
-  animation-name: floating;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+/* ----------------------------------------------------
+ *  FLOATING ORBS (decoration)
+ * -------------------------------------------------- */
+.floating {
+  animation: floating 3s ease-in-out infinite;
 }
 @keyframes floating {
   0%   { transform: translate(0,  0px); }
   50%  { transform: translate(0, 15px); }
-  100% { transform: translate(0, -0px); }    
+  100% { transform: translate(0, -0px); }
 }
 
-/* -------- Responsive & Accessibility Overrides -------- */
-
-/* Honor “reduced motion” preferences */
+/* ----------------------------------------------------
+ *  ACCESSIBILITY – RESPECT REDUCED-MOTION
+ * -------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .typewriter {
     animation: none !important;
@@ -65,16 +73,64 @@ body {
   }
 }
 
-/* On small screens: allow wrapping, remove cursor, expand height */
+/* ----------------------------------------------------
+ *  MOBILE (< 768 px) OVERRIDES
+ * -------------------------------------------------- */
 @media (max-width: 767px) {
   .typewriter {
-    overflow: visible !important;        /* show all text */
-    white-space: pre-wrap !important;    /* wrap onto multiple lines */
-    overflow-wrap: break-word !important;/* prevent long-word overflow */
-    border-right: none !important;       /* hide blinking cursor */
-    animation: none !important;          /* stop typing animation */
-    max-width: 100%;                     /* never exceed container */
-    /* ensure enough height for two lines */
-    height: auto !important;
+    /* 1️⃣  allow natural wrapping but keep animation & cursor */
+    white-space: normal !important;     /* multi-line */
+    overflow: hidden !important;        /* still hide unrevealed chars */
+    animation:                           /* re-attach original anims */
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+    text-align: center;                 /* center ↓ name & job titles */
+  }
+}
+
+/* ----------------------------------------------------
+ *  BUTTON UTILITY (ensures centered labels)
+ * -------------------------------------------------- */
+button,
+.btn,
+.btn-primary,
+.btn-secondary {
+  text-align: center;   /* keep label centred on all breakpoints */
+}
+
+/* =========================================================
+ *  ─── HERO / TYPEWRITER  DESKTOP SAFETY NET ───────────────
+ *  Put this snippet LAST in style.css so it overrides earlier
+ *  rules only when it needs to.
+ * ======================================================= */
+
+/* a tiny-bit tighter tracking so long lines fit more often */
+.typewriter {
+  letter-spacing: 0.12em;                 /* was .15em */
+}
+
+/* after the typing animation completes (3.5 s) we add a
+   utility-class that: hides the cursor + allows wrapping   */
+@keyframes typingDone { to { visibility: visible; } }
+
+.typewriter.is-done {                     /* toggled by JS */
+  animation: none !important;             /* stop typing   */
+  border-right: none !important;          /* hide cursor   */
+  overflow: visible !important;           /* show all text */
+  white-space: normal !important;         /* may wrap      */
+}
+
+/* If, even after the tweak above, the single-line string is
+   STILL wider than the space you gave it (e.g. on laptop
+   widths when the photo is beside it), we let it wrap -
+   only for ≥ 1024 px – so mobiles keep the centred layout   */
+@media (min-width: 1024px) {
+  .typewriter {
+    max-width: 100%;                      /* never clipped */
+    overflow-wrap: break-word;            /* safe breaks   */
+    white-space: nowrap;                  /* keep single   */
+  }
+  .typewriter.is-done {
+    white-space: normal;                  /* ⇢ may wrap    */
   }
 }

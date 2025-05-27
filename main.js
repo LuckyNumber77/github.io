@@ -59,3 +59,6 @@
       typewriter.style.animation = 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite';
     }, 3500);
   
+    setTimeout(() => {
+  document.querySelector('.typewriter')?.classList.add('is-done');
+}, 3600);   // a hair longer than the 3.5 s typing animation
